@@ -1,0 +1,7 @@
+resources:
+  - openldap.yaml
+
+configMapGenerator:
+- name: config-ldap
+  files:
+  - config-ldap.ldif

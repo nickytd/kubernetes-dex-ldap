@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dex
+  namespace: dex
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/enable-access-log: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"    
+spec:
+  rules:
+  - host: dex.local.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: dex
+            port:
+              number: 5555
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dex.local.dev
+    secretName: dex-tls

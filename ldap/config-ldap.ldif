@@ -1,0 +1,54 @@
+# Demo organization
+#dn: dc=demo
+#objectClass: dcObject
+#objectClass: organization
+#o: demo
+#dc: demo
+
+dn: ou=People,dc=demo
+objectClass: organizationalUnit
+ou: People
+
+dn: cn=developer,ou=People,dc=demo
+objectClass: person
+objectClass: inetOrgPerson
+sn: developer
+cn: developer
+mail: developer@demo
+userpassword: develop
+
+dn: cn=viewer,ou=People,dc=demo
+objectClass: person
+objectClass: inetOrgPerson
+sn: viewer
+cn: viewer
+mail: viewer@demo
+userpassword: view
+
+dn: cn=admin,ou=People,dc=demo
+objectClass: person
+objectClass: inetOrgPerson
+sn: admin
+cn: admin
+mail: admin@demo
+userpassword: admin
+
+# Group definitions.
+dn: ou=Groups,dc=demo
+objectClass: organizationalUnit
+ou: Groups
+
+dn: cn=administrator,ou=Groups,dc=demo
+objectClass: groupOfNames
+cn: administrator
+member: cn=admin,ou=People,dc=demo
+
+dn: cn=developer,ou=Groups,dc=demo
+objectClass: groupOfNames
+cn: developer
+member: cn=developer,ou=People,dc=demo
+
+dn: cn=viewer,ou=Groups,dc=demo
+objectClass: groupOfNames
+cn: viewer
+member: cn=viewer,ou=People,dc=demo

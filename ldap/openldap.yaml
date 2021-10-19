@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: openldap
+  name: openldap  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openldap
+  template:
+    metadata:
+      labels:
+        app: openldap
+    spec:
+      containers:
+      - image: osixia/openldap:1.5.0
+        name: openldap
+        args:
+          - --copy-service
+          - --dont-touch-etc-hosts
+          - --loglevel
+          - info
+        ports:
+        - name: ldapport
+          containerPort: 389
+        - name: ldapsport
+          containerPort: 636  
+        volumeMounts:
+        - name: config
+          mountPath: /container/service/slapd/assets/config/bootstrap/ldif/custom/config-ldap.ldif
+          subPath: config-ldap.ldif        
+        env:
+        - name: LDAP_TLS_VERIFY_CLIENT
+          value: try
+        - name: LDAP_ORGANISATION
+          value: "Demo"
+        - name: "LDAP_DOMAIN"
+          value: "demo"  
+        - name: "LDAP_ADMIN_PASSWORD"
+          value: "admin"  
+      volumes:
+      - name: config
+        configMap:
+          name: config-ldap          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openldap  
+spec:
+  type: ClusterIP
+  ports:
+  - name: ldapport
+    port: 389
+    targetPort: ldapport
+  - name: ldapsport
+    port: 636
+    targetPort: ldapsport      
+  selector:
+    app: openldap            

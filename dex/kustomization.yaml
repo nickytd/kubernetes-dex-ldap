@@ -1,0 +1,7 @@
+resources:
+  - dex.yaml
+
+configMapGenerator:
+- name: dex
+  files:
+    - config.yaml

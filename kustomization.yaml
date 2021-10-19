@@ -1,0 +1,8 @@
+generatorOptions:
+ disableNameSuffixHash: true
+
+namespace: dex
+
+resources:
+  - dex
+  - ldap
