@@ -71,8 +71,13 @@ connectors:
 staticClients:
   - id: minikube
     redirectURIs:
-    - 'http://localhost:8000'
-    name: 'minikube'
-    secret: minikube    
+      - http://localhost:8000
+    name: minikube
+    secret: minikube
+  - id: opensearch
+    redirectURIs:
+      - https://opensearch.local.dev/auth/openid/login
+    name: opensearch
+    secret: opensearch      
 
 enablePasswordDB: false
