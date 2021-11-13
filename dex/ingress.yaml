@@ -6,7 +6,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
     nginx.ingress.kubernetes.io/enable-access-log: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"    
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "ca-issuer"    
 spec:
   rules:
   - host: dex.local.dev
