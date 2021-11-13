@@ -71,7 +71,7 @@ connectors:
 staticClients:
   - id: minikube
     redirectURIs:
-    - 'https://http://localhost:8000'
+    - 'http://localhost:8000'
     name: 'minikube'
     secret: minikube    
 
